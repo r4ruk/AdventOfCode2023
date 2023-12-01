@@ -6,7 +6,7 @@ use chrono::prelude::*;
 pub fn read_file(day_num: u32) -> Result<Vec<String>, io::Error> {
     // read day specific text file line per line
     let current_dir = env::current_dir()?;
-    let path = current_dir.join(format!("inputs\\day{actual_day}.txt"));
+    let path = current_dir.join(format!("inputs\\day{day_num}.txt"));
 
     let file = match File::open(path) {
         Ok(file) => file,
