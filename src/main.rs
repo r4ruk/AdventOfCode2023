@@ -1,5 +1,6 @@
 
 mod file_reader;
+mod day2;
 mod day1;
 mod num_util;
 mod day_helper;
@@ -19,6 +20,7 @@ fn main() {
 
     let solver: Box<dyn solver::Solver> = match day {
         1 => Box::new(day1::SolverImpl),
+        2 => Box::new(day2::SolverImpl),
         _ => {
             println!("Solver for day {day} has not yet been implemented.");
             return;

@@ -1,7 +1,6 @@
 use std::env;
 use std::fs::File;
 use std::io::{self, BufRead};
-use chrono::prelude::*;
 
 pub fn read_file(day_num: u32) -> Result<Vec<String>, io::Error> {
     // read day specific text file line per line
