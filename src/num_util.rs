@@ -12,6 +12,7 @@ pub fn parse_string_ref(input: &str) -> i128 {
     }
 }
 
+#[allow(dead_code)]
 pub fn get_smallest_from_vec(input: &Vec<i128>) -> i128 {
     let smallest = input.iter().cloned().min();
 

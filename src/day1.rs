@@ -14,7 +14,7 @@ impl solver::Solver for SolverImpl {
             let chars = line.chars().collect::<Vec<_>>();
 
             // enumerate all chars and parse them to digits
-            for (i, c) in chars.iter().enumerate() {
+            for (_, c) in chars.iter().enumerate() {
                 if let Some(d) = c.to_digit(10) {
                     // if its a digit push it into possible list
                     digits.push(d);

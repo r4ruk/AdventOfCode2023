@@ -112,7 +112,7 @@ impl SolverImpl {
         let max_green = num_util::get_biggest_from_vec(&green_set);
         let max_blue = num_util::get_biggest_from_vec(&blue_set);
         let max_red = num_util::get_biggest_from_vec(&red_set);
-        return (max_green * max_blue * max_red);
+        return max_green * max_blue * max_red;
     }
 
 }
