@@ -1,11 +1,12 @@
 
 mod file_reader;
-mod day2;
 mod day1;
+mod day2;
+mod day3;
+mod day4;
 mod num_util;
 mod day_helper;
 mod solver;
-mod day3;
 
 fn main() {
     let day: u32 = day_helper::get_day();
@@ -23,6 +24,7 @@ fn main() {
         1 => Box::new(day1::SolverImpl),
         2 => Box::new(day2::SolverImpl),
         3 => Box::new(day3::SolverImpl),
+        4 => Box::new(day4::SolverImpl),
         _ => {
             println!("Solver for day {day} has not yet been implemented.");
             return;
