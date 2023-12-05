@@ -1,5 +1,4 @@
 use std::collections::HashMap;
-use std::ops::Add;
 use crate::{num_util, solver};
 
 pub struct SolverImpl;
@@ -27,7 +26,7 @@ impl solver::Solver for SolverImpl {
         let mut values: HashMap<usize, i128> = HashMap::new();
         for (i, line) in input.iter().enumerate() {
             // add 1 for each line by default
-            values.entry(i).or_insert(1).add(1);
+            values.entry(i).or_insert(1);
 
             // split the stuff
             let numberset: Vec<&str> = line.split(':').collect();
@@ -36,7 +35,7 @@ impl solver::Solver for SolverImpl {
             let my_nums: Vec<&str> = winning_mynum_split[1].split_whitespace().collect();
 
             // search for amount of matching numbers
-            let mut matching_nums = Self::find_matching_numbers(&winning_numbers, &my_nums);
+            let matching_nums = Self::find_matching_numbers(&winning_numbers, &my_nums);
 
             // for each following item add amount of items which i have of the actual item
             for j in 0..matching_nums as usize {
@@ -56,7 +55,7 @@ impl SolverImpl {
 
         for winning_number in winning_numbers {
             for num in my_nums {
-                if num_util::parse_string_ref(num.clone().trim()) == num_util::parse_string_ref(winning_number) {
+                if num_util::parse_string_ref(num.trim()) == num_util::parse_string_ref(winning_number) {
                     temp_res += 1;
                 }
             }
