@@ -83,53 +83,6 @@ impl solver::Solver for SolverImpl {
     }
 }
 
-
-fn solve_part3(inputs: &Vec<String>) -> i128 {
-
-    let grid = grid::manipulation::Grid::<String>::new(inputs, manipulation::DataSeparatingCriteria::EachChar);
-    let startpnt = grid.find("S".to_string(), None);
-
-    let mut point_before = startpnt.clone();
-    let mut next_point = grid.get(&Point{x_coord: startpnt.x_coord-1,y_coord: startpnt.y_coord, value: None}).clone();
-
-    let mut point_storage:Vec<Point<String>>= Vec::new();
-    point_storage.push(next_point.clone());
-    loop {
-        let new_next_point = get_next_point(point_before.clone(), &next_point, &grid);
-        if "S" != next_point.value.as_deref().unwrap() {
-            point_storage.push(new_next_point.clone());
-            point_before = next_point.clone();
-            next_point = new_next_point;
-        } else {
-            break;
-        }
-    }
-
-    let min_x =  point_storage.iter().min_by_key(|&e| &e.x_coord).unwrap().x_coord;
-    let min_y =  point_storage.iter().min_by_key(|&e| &e.y_coord).unwrap().y_coord;
-    let max_x =  point_storage.iter().max_by_key(|&e| &e.x_coord).unwrap().x_coord;
-    let max_y =  point_storage.iter().max_by_key(|&e| &e.y_coord).unwrap().y_coord;
-
-    let width = max_x - min_x;
-    let height = max_y - min_y;
-
-    let polygon_coords: Vec<(i32, i32)> = point_storage.iter().map(|element| (element.x_coord, element.y_coord)).collect();
-    let polygon = Polygon::new(polygon_coords.into(), vec![]);
-
-    let mut counter = 0;
-    for x in 0..width {
-        for y in 0..height {
-            let grid_pnt = Coord { x, y };
-            if polygon.contains(&grid_pnt){
-                counter += 1;
-            }
-        }
-    }
-    return counter
-}
-
-
-
 fn get_next_point(pnt_before: Point<String>,pnt_actual: &Point<String>,grid: &Grid<String>) -> Point<String>{
     let m = pnt_actual.value.as_deref().unwrap_or_default();
     match m {
