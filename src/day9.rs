@@ -1,16 +1,16 @@
-use std::collections::HashMap;
 use crate::{num_util, solver};
 
 extern crate aoc_lib;
-use aoc_lib::math;
+use aoc_lib::parser::basic::parse_line;
 
 pub struct SolverImpl;
 
 impl solver::Solver for SolverImpl {
     fn solve_part1(&self, inputs: &Vec<String>) -> i128 {
         let mut result: i128 = 0;
-        for (index, line) in inputs.iter().enumerate() {
-            let mut numbers: Vec<_> = line.split_whitespace().collect::<Vec<_>>().iter().map(|element| num_util::parse_string_ref(element)).collect();
+        for (_index, line) in inputs.iter().enumerate() {
+            let numbers: Vec<_> = parse_line(line, ' ').iter().map(|element| num_util::parse_string_ref(element)).collect();
+
             // first line of numbers
             result += extrapolate_last(&numbers)
         }
@@ -20,8 +20,8 @@ impl solver::Solver for SolverImpl {
 
     fn solve_part2(&self, inputs: &Vec<String>) -> i128 {
         let mut result: i128 = 0;
-        for (index, line) in inputs.iter().enumerate() {
-            let mut numbers: Vec<_> = line.split_whitespace().collect::<Vec<_>>().iter().map(|element| num_util::parse_string_ref(element)).collect();
+        for (_index, line) in inputs.iter().enumerate() {
+            let numbers: Vec<_> = parse_line(line, ' ').iter().map(|element| num_util::parse_string_ref(element)).collect();
 
             result += extrapolate_first(&numbers)
         }

@@ -8,4 +8,6 @@ edition = "2021"
 [dependencies]
 chrono = "0.4"
 stopwatch = "0.0.7"
-time = "0.3.30"
+aoc_lib = {path = "aoc_lib"}
+log = "0.4.20"
+geo = "0.27.0"

@@ -1,3 +1,7 @@
 /target
 /inputs
 /.idea
+.vscode/launch.json
+aoc_lib/Cargo.lock
+aoc_lib/Cargo.toml
+aoc_lib/target/
