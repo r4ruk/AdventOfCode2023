@@ -12,7 +12,7 @@ const ADJACENT_COORDS:[Point<i32>; 9]  = [
 ];
 
 pub struct Grid<T>{
-    data: Vec<Vec<Point<T>>>,
+    pub data: Vec<Vec<Point<T>>>,
 }
 
 #[derive(Clone)]

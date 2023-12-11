@@ -5,13 +5,12 @@ use geo::Polygon;
 use geo::Coord;
 
 extern crate aoc_lib;
-use aoc_lib::grid;
 use aoc_lib::grid::manipulation::{self, Grid, Point};
 
 pub struct SolverImpl;
 impl solver::Solver for SolverImpl {
     fn solve_part1(&self, inputs: &Vec<String>) -> i128 {
-        let grid = grid::manipulation::Grid::<String>::new(inputs, manipulation::DataSeparatingCriteria::EachChar);
+        let grid = Grid::<String>::new(inputs, manipulation::DataSeparatingCriteria::EachChar);
         let start_pnt = grid.find("S".to_string(), None);
 
         let mut point_before = start_pnt.clone();
@@ -40,7 +39,7 @@ impl solver::Solver for SolverImpl {
 
     fn solve_part2(&self, inputs: &Vec<String>) -> i128 {
 
-        let grid = grid::manipulation::Grid::<String>::new(inputs, manipulation::DataSeparatingCriteria::EachChar);
+        let grid = Grid::<String>::new(inputs, manipulation::DataSeparatingCriteria::EachChar);
         let startpnt = grid.find("S".to_string(), None);
 
         let mut point_before = startpnt.clone();

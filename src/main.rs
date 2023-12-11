@@ -10,6 +10,7 @@ mod day7;
 mod day8;
 mod day9;
 mod day10;
+mod day11;
 mod num_util;
 mod day_helper;
 mod solver;
@@ -39,6 +40,7 @@ fn main() {
         8 => Box::new(day8::SolverImpl),
         9 => Box::new(day9::SolverImpl),
         10 => Box::new(day10::SolverImpl),
+        11 => Box::new(day11::SolverImpl),
         _ => {
             println!("Solver for day {day} has not yet been implemented.");
             return;
