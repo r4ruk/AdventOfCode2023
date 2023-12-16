@@ -1,11 +1,10 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashSet};
 use crate::solver;
 extern crate aoc_lib;
 
 pub struct SolverImpl;
 impl solver::Solver for SolverImpl {
     fn solve_part1(&self, inputs: &Vec<String>) -> i128 {
-        let mut res = 0;
         let mut grid: Vec<Vec<char>> = vec![];
         // for each line in the input
         Self::build_grid(inputs, &mut grid);
@@ -24,11 +23,9 @@ impl solver::Solver for SolverImpl {
             Self::find_visited_tuples(&mut grid, &mut set_of_tuples, &mut actual_directions);
             if actual_directions.len() <= 0 {
                 let res = distinct_count_of_sets(&set_of_tuples);
-                return res as i128
+                return res
             }
         }
-
-        return 0
     }
 
     fn solve_part2(&self, inputs: &Vec<String>) -> i128 {
@@ -38,7 +35,7 @@ impl solver::Solver for SolverImpl {
         let directions = Self::build_starting_points(&mut grid);
 
         // run over each starting point and find the value of visited points in the grid.
-        let mut actual_directions: Vec<_> = directions.into_iter().collect();
+        let actual_directions: Vec<_> = directions.into_iter().collect();
         let mut res_storage: Vec<i128> = vec![];
         for d in actual_directions {
             let mut set_of_tuples = HashSet::new();
@@ -48,7 +45,7 @@ impl solver::Solver for SolverImpl {
                 Self::find_visited_tuples(&mut grid, &mut set_of_tuples, &mut single_direction_start);
                 if single_direction_start.len() <= 0 {
                     let res = distinct_count_of_sets(&set_of_tuples);
-                    res_storage.push(res as i128);
+                    res_storage.push(res);
 
                     break;
                 }
@@ -80,8 +77,8 @@ impl SolverImpl {
             directions.insert(left_tuple);
             directions.insert(right_tuple);
             if index == 1 || index == grid.len() - 1 {
-                for (col_index, col) in line.iter().enumerate() {
-                    let mut vertical_tuple;
+                for (col_index, _col) in line.iter().enumerate() {
+                    let vertical_tuple;
                     if index == 0 {
                         vertical_tuple = (index as i32, col_index as i32, 2);
                     } else {
@@ -95,7 +92,7 @@ impl SolverImpl {
     }
 
     fn find_visited_tuples(grid: &mut Vec<Vec<char>>, set_of_tuples: &mut HashSet<(i32, i32, i32)>, steps_store: &mut Vec<(i32, i32, i32)>) {
-        for mut step in &mut steps_store.pop() {
+        for step in &mut steps_store.pop() {
             if step.0 < 0 || step.0 > (grid.len() - 1) as i32
                 || (step.1 < 0 || step.1 > (grid[0].len() - 1) as i32)
                 || set_of_tuples.insert((step.0, step.1, step.2)) == false {

@@ -1,11 +1,10 @@
-use std::collections::HashMap;
 use crate::file_reader::read_file_to_str;
 use crate::solver;
 extern crate aoc_lib;
 
 pub struct SolverImpl;
 impl solver::Solver for SolverImpl {
-    fn solve_part1(&self, inputs: &Vec<String>) -> i128 {
+    fn solve_part1(&self, _inputs: &Vec<String>) -> i128 {
         let input = read_file_to_str(15);
         let mut res = 0;
         for s in input.split(',') {
@@ -15,7 +14,7 @@ impl solver::Solver for SolverImpl {
         return res
     }
 
-    fn solve_part2(&self, inputs: &Vec<String>) -> i128 {
+    fn solve_part2(&self, _inputs: &Vec<String>) -> i128 {
         let mut storage: Vec<Vec<(&str, u32)>> = vec![];
         let input = read_file_to_str(15);
         for _j in 0..=256{
@@ -26,7 +25,7 @@ impl solver::Solver for SolverImpl {
                 let lens_name: &str = s.split('=').collect::<Vec<_>>()[0];
 
                 let map_index = calculate_value(lens_name) as usize;
-                let mut working_box:&mut Vec<(&str, u32)> = &mut storage[map_index];
+                let working_box:&mut Vec<(&str, u32)> = &mut storage[map_index];
                 let focal_length = s.split('=').collect::<Vec<_>>()[1].parse::<u32>().unwrap();
 
                 let lens = (lens_name, focal_length);
@@ -44,7 +43,7 @@ impl solver::Solver for SolverImpl {
             } else { // contains a -
                 let lens_name = s.trim_matches('-');
                 let map_index = calculate_value(lens_name) as usize;
-                let mut working_box:&mut Vec<(&str, u32)> = &mut storage[map_index];
+                let working_box:&mut Vec<(&str, u32)> = &mut storage[map_index];
 
                 let mut found_index = -1;
                 for (index, j) in working_box.iter().enumerate() {
