@@ -16,6 +16,7 @@ mod day15;
 mod num_util;
 mod day_helper;
 mod solver;
+mod day16;
 
 fn main() {
     // parameter used for automatic loading and calling of the right day
@@ -45,6 +46,7 @@ fn main() {
         11 => Box::new(day11::SolverImpl),
         14 => Box::new(day14::SolverImpl),
         15 => Box::new(day15::SolverImpl),
+        16 => Box::new(day16::SolverImpl),
         _ => {
             println!("Solver for day {day} has not yet been implemented.");
             return;

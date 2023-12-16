@@ -11,7 +11,7 @@ enum Direction {
 pub struct SolverImpl;
 impl solver::Solver for SolverImpl {
     fn solve_part1(&self, inputs: &Vec<String>) -> i128 {
-                let mut tilting_grid: Vec<Vec<char>> = vec![];
+        let mut tilting_grid: Vec<Vec<char>> = vec![];
         // for each line in the input
         for (y, l) in inputs.iter().enumerate() {
             tilting_grid.push(Vec::new());
