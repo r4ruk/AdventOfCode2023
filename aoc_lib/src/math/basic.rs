@@ -22,6 +22,15 @@ pub fn lcm(numbers: Vec<i128>)-> i128  {
     lcm
 }
 
+/// function calculates the greatest common divisor for 2 numbers given.
+pub fn gcd(a: i128, b: i128) -> i128 {
+    if b == 0 {
+        a
+    } else {
+        gcd(b, a % b)
+    }
+}
+
 /// function returns a hashmap of prime factors and its corresponding power for the given number
 pub fn prime_factors(n: i128) -> HashMap<i128, i128> {
     let mut factors = HashMap::new();
